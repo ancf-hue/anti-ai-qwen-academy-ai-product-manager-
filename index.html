@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anti-AI Qwen Academy — бесплатный социальный проект по подготовке менеджеров ИИ-продуктов">
+    <title>Anti-AI Qwen Academy | Менеджер ИИ-продуктов (AI Product Manager)</title>
+    
+    <!-- 🔹 Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="logo.png">
+    
+    <!-- 🔹 Open Graph / Social -->
+    <meta property="og:title" content="Anti-AI Qwen Academy | AI Product Manager">
+    <meta property="og:description" content="Бесплатная библиотека материалов по управлению ИИ-продуктами">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+    
+    <!-- 🔹 Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+           ============================================ */
+        :root {
+            --navy: #1a233a;
+            --navy-light: #2a3a5a;
+            --navy-dark: #0f1525;
+            --gold: #c9a227;
+            --gold-light: #e0c050;
+            --gold-dark: #a08020;
+            --light: #f8f9fc;
+            --light-2: #eef1f7;
+            --text: #2d3748;
+            --text-light: #555;
+            --text-muted: #888;
+            --border: #e2e8f0;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.16);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; height: auto; }
+        
+        a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover { color: var(--gold-dark); }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .main-header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            gap: 1.5rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            height: 52px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+
+        .logo:hover { transform: scale(1.05); }
+
+        .brand-text h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            opacity: 0.75;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .header-nav {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem 0.8rem;
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.85);
+            padding: 0.45rem 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .nav-btn:hover {
+            background: rgba(201, 162, 39, 0.25);
+            border-color: var(--gold);
+            color: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(201, 162, 39, 0.35);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) saturate(1.1);
+            transition: var(--transition);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26,35,58,0.3) 0%,
+                rgba(26,35,58,0.5) 50%,
+                rgba(26,35,58,0.92) 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+        }
+
+        .hero-content {
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(201, 162, 39, 0.2);
+            border: 1px solid rgba(201, 162, 39, 0.4);
+            color: var(--gold-light);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .hero-overlay h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .hero-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gold-light);
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           STATS SECTION
+           ============================================ */
+        .stats-section {
+            max-width: 1440px;
+            margin: -4rem auto 3rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gold);
+        }
+
+        .stat-card:hover::before { transform: scaleX(1); }
+
+        .stat-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.2rem;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+            transition: var(--transition);
+        }
+
+        .stat-card:hover .stat-icon { transform: scale(1.1) rotate(-3deg); }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 0.3rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ============================================
+           SUPPORT SECTION
+           ============================================ */
+        .support-section {
+            max-width: 1440px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .support-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .support-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .support-heart {
+            font-size: 2rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .support-description {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .support-highlight {
+            background: rgba(201, 162, 39, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .support-method {
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+        }
+
+        .support-method-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .phone-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: monospace;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin: 0.5rem 0;
+            display: block;
+        }
+
+        .copy-btn {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .copy-btn.copied {
+            background: #4caf50;
+            color: white;
+        }
+
+        .support-benefits {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .benefit-badge {
+            background: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .support-thanks {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.5rem 0;
+            color: var(--gold-light);
+        }
+
+        .support-catalog {
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .support-catalog a {
+            color: var(--gold-light);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .support-catalog a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .catalog-badge {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* ============================================
+           OFFLINE MATERIALS SECTION
+           ============================================ */
+        .offline-section {
+            max-width: 1440px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .offline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .offline-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .offline-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .offline-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto;
+            background: var(--light-2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .offline-card h4 {
+            font-size: 1rem;
+            color: var(--navy);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .offline-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .offline-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .offline-download:hover {
+            color: var(--gold-dark);
+            transform: translateX(3px);
+        }
+
+        /* ============================================
+           LIBRARY SECTION
+           ============================================ */
+        .library-section {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--navy);
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .library-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper { position: relative; }
+        .search-wrapper::before {
+            content: '🔍';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        #searchInput {
+            width: 350px;
+            padding: 0.9rem 1rem 0.9rem 2.8rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            font-family: inherit;
+            background: var(--card-bg);
+        }
+
+        #searchInput:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.12);
+        }
+
+        #searchInput::placeholder { color: #aaa; }
+
+        .result-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            background: var(--light-2);
+            border-radius: var(--radius);
+            white-space: nowrap;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.3rem;
+            background: var(--light-2);
+            padding: 0.3rem;
+            border-radius: var(--radius);
+        }
+
+        .view-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 0.7rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .view-btn.active {
+            background: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Library Grid */
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .library-grid.list-view { grid-template-columns: 1fr; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        .card:hover::before { opacity: 1; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.mod1 { background: #e3f2fd; color: #0d47a1; }
+        .badge.mod2 { background: #e8f5e9; color: #1b5e20; }
+        .badge.mod3 { background: #fff3e0; color: #e65100; }
+        .badge.mod4 { background: #fce4ec; color: #880e4f; }
+        .badge.mod5 { background: #f3e5f5; color: #4a148c; }
+        .badge.type { background: var(--light-2); color: var(--text-light); border: 1px solid var(--border); }
+        .badge.free { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--navy);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .card-author {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            background: rgba(201, 162, 39, 0.1);
+        }
+
+        .card-link:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateX(3px);
+        }
+
+        .card-link .arrow { transition: transform 0.2s ease; }
+        .card-link:hover .arrow { transform: translateX(3px); }
+
+        .card-offline {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .library-grid.list-view .card {
+            flex-direction: row;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .library-grid.list-view .card-header {
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .library-grid.list-view .card-footer {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.4;
+            filter: grayscale(0.5);
+        }
+
+        .empty-state p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state .hint {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .hidden { display: none !important; }
+
+        /* Modules Info */
+        .modules-info {
+            max-width: 1440px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 2px solid var(--border);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .module-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--navy);
+            opacity: 0.08;
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            line-height: 1;
+        }
+
+        .module-card h3 {
+            font-size: 1.15rem;
+            color: var(--navy);
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .module-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .module-resources {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .footer-main {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+
+        .footer-logo {
+            height: 56px;
+            width: auto;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .footer-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text p {
+            opacity: 0.75;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-column h4 {
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.7rem; }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold-light);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem !important;
+            opacity: 0.45 !important;
+            max-width: 600px;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Loading */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            gap: 1.5rem;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .footer-main { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 1024px) {
+            .stats-section { grid-template-columns: repeat(2, 1fr); }
+            .library-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+
+            .header-nav {
+                padding: 0 1.5rem 0.8rem;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .header-nav::-webkit-scrollbar { display: none; }
+
+            .hero { height: 320px; }
+            .hero-overlay { padding: 2rem 1.5rem; }
+            .hero-overlay h2 { font-size: 1.7rem; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat-number { font-size: 1.4rem; }
+
+            .stats-section {
+                margin-top: -3rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 1.5rem;
+            }
+
+            .stat-card { padding: 1.5rem 1rem; }
+            .stat-icon { width: 56px; height: 56px; }
+            .stat-number { font-size: 1.8rem; }
+
+            .library-section, .modules-info, .support-section, .offline-section {
+                padding: 0 1.5rem 3rem;
+            }
+
+            .section-header { flex-direction: column; align-items: flex-start; }
+            .section-title { font-size: 1.5rem; }
+            #searchInput { width: 100%; }
+            .library-controls { width: 100%; }
+            .library-grid { grid-template-columns: 1fr; }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2.5rem 1.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .modules-grid, .offline-grid { grid-template-columns: 1fr; }
+
+            .support-card { padding: 2rem 1.5rem; }
+            .support-title { font-size: 1.4rem; }
+            .phone-number { font-size: 1.4rem; }
+            .support-catalog { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-section { grid-template-columns: 1fr; }
+            .hero { height: 280px; }
+            .hero-overlay h2 { font-size: 1.4rem; }
+            .hero-overlay p { font-size: 0.95rem; }
+            .hero-stats { flex-wrap: wrap; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-top">
+            <div class="brand">
+                <img src="logo.png" alt="Логотип Anti-AI Qwen Academy" class="logo">
+                <div class="brand-text">
+                    <h1>Anti-AI Qwen Academy</h1>
+                    <span class="tagline">Менеджер ИИ-продуктов (AI Product Manager)</span>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="status-dot"></span>
+                <span>Библиотека обновлена: май 2026</span>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <button class="nav-btn active" data-filter="all">📚 Все материалы</button>
+            <button class="nav-btn" data-filter="module1">💡 Модуль 1</button>
+            <button class="nav-btn" data-filter="module2">📊 Модуль 2</button>
+            <button class="nav-btn" data-filter="module3">⚙️ Модуль 3</button>
+            <button class="nav-btn" data-filter="module4">👥 Модуль 4</button>
+            <button class="nav-btn" data-filter="module5">🚀 Модуль 5</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="banner.jpg" alt="Баннер Anti-AI Qwen Academy" class="hero-img">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <div class="hero-badge">🆓 Бесплатный социальный проект</div>
+                <h2>Управление ИИ-продуктами<br>от идеи до запуска</h2>
+                <p>Обучение менеджеров ИИ-продуктов: продуктовое мышление, техническая грамотность, координация команд. 5 модулей, 20+ ресурсов.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number" id="heroTotalResources">0</div>
+                        <div class="hero-stat-label">Ресурсов</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5</div>
+                        <div class="hero-stat-label">Модулей</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">100%</div>
+                        <div class="hero-stat-label">Бесплатно</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">2026</div>
+                        <div class="hero-stat-label">Актуально</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+        <div class="stat-card">
+            <img src="icon-education.png" alt="Образование" class="stat-icon">
+            <div class="stat-number" id="statBooks">0</div>
+            <div class="stat-label">Материалов по продукт-менеджменту</div>
+        </div>
+        <div class="stat-card">
+            <img src="icon-market.png" alt="Рынок" class="stat-icon">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Этапов разработки</div>
+        </div>
+        <div class="stat-card">
+            <img src="icon-technology.png" alt="Технологии" class="stat-icon">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Бесплатный доступ</div>
+        </div>
+        <div class="stat-card">
+            <img src="icon-team.png" alt="Команда" class="stat-icon">
+            <div class="stat-number">PRD</div>
+            <div class="stat-label">Шаблоны и чек-листы</div>
+        </div>
+    </section>
+
+    <!-- SUPPORT SECTION -->
+    <section class="support-section" id="support">
+        <div class="support-card">
+            <div class="support-header">
+                <span class="support-heart">🤝</span>
+                <h2 class="support-title">ПОДДЕРЖАТЬ ПРОЕКТ</h2>
+                <span class="support-heart">💙</span>
+            </div>
+            
+            <p class="support-description">
+                Приложение <span class="support-highlight">бесплатное</span>. Было и останется.
+                <br><br>
+                Если проект помог вам или вашим близким — можете поддержать разработку добровольным переводом.
+            </p>
+
+            <div class="support-method">
+                <div class="support-method-title">📱 ПЕРЕВОД ПО НОМЕРУ ТЕЛЕФОНА:</div>
+                <span class="phone-number" id="phoneNum">8-920-227-56-76</span>
+                <button class="copy-btn" id="copyBtn" onclick="copyPhone()">
+                    📋 Копировать номер
+                </button>
+                <div class="support-benefits">
+                    <span class="benefit-badge">✅ Деньги придут мгновенно</span>
+                    <span class="benefit-badge">🔒 Без комиссии</span>
+                    <span class="benefit-badge">🛡️ Безопасно</span>
+                </div>
+            </div>
+
+            <p class="support-thanks">❤️ Спасибо за поддержку!</p>
+
+            <div class="support-catalog">
+                <span class="catalog-badge">🌟 ПАРТНЁРЫ ПРОЕКТА</span>
+                <span style="opacity:0.7;font-size:0.9rem">Проект развивается при поддержке сообщества</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFLINE MATERIALS SECTION -->
+    <section class="offline-section" id="offline">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">📥 Офлайн-материалы для печати</h2>
+                <p class="section-subtitle">Готовые шаблоны и чек-листы в формате PDF</p>
+            </div>
+        </div>
+        <div class="offline-grid">
+            <div class="offline-card">
+                <div class="offline-icon">📋</div>
+                <h4>PRD-template.pdf</h4>
+                <p>Шаблон Product Requirements Document для ИИ-фич</p>
+                <a href="PRD-template.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
+            </div>
+            <div class="offline-card">
+                <div class="offline-icon">✅</div>
+                <h4>launch-checklist.pdf</h4>
+                <p>Чек-лист запуска ИИ-продукта: до и после релиза</p>
+                <a href="launch-checklist.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
+            </div>
+            <div class="offline-card">
+                <div class="offline-icon">🎯</div>
+                <h4>business-canvas.pdf</h4>
+                <p>Business Model Canvas адаптирован для ИИ-продуктов</p>
+                <a href="business-canvas.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
+            </div>
+            <div class="offline-card">
+                <div class="offline-icon">🧪</div>
+                <h4>mvp-test-guide.pdf</h4>
+                <p>Руководство по MVP-тестам: Wizard of Oz, Concierge, Fake Door</p>
+                <a href="mvp-test-guide.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
+            </div>
+            <div class="offline-card">
+                <div class="offline-icon">📊</div>
+                <h4>metrics-guide.pdf</h4>
+                <p>Метрики для ИИ-продуктов: business KPIs + ML metrics</p>
+                <a href="metrics-guide.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULES INFO -->
+    <section class="modules-info">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">📖 Структура программы</h2>
+                <p class="section-subtitle">Пять модулей от основ до запуска ИИ-продукта</p>
+            </div>
+        </div>
+        <div class="modules-grid">
+            <div class="module-card" data-module="module1">
+                <span class="module-number">01</span>
+                <h3>💡 Основы управления ИИ-продуктами</h3>
+                <p>Жизненный цикл ИИ-продукта, MLOps, фреймворки разработки, продуктовое мышление.</p>
+                <div class="module-resources">📄 3 ресурса</div>
+            </div>
+            <div class="module-card" data-module="module2">
+                <span class="module-number">02</span>
+                <h3>📊 Продуктовое мышление и рынок</h3>
+                <p>Jobs-to-be-Done, Lean Startup, анализ рынка, валидация гипотез, MVP-тесты.</p>
+                <div class="module-resources">📄 4 ресурса</div>
+            </div>
+            <div class="module-card" data-module="module3">
+                <span class="module-number">03</span>
+                <h3>⚙️ Техническая грамотность</h3>
+                <p>Типы моделей ИИ, метрики качества, данные для обучения, инференс и масштабирование.</p>
+                <div class="module-resources">📄 5 ресурсов</div>
+            </div>
+            <div class="module-card" data-module="module4">
+                <span class="module-number">04</span>
+                <h3>👥 Координация команды и запуск</h3>
+                <p>Управление кросс-функциональной командой, чек-лист запуска, PRD, мониторинг.</p>
+                <div class="module-resources">📄 5 ресурсов</div>
+            </div>
+            <div class="module-card" data-module="module5">
+                <span class="module-number">05</span>
+                <h3>🚀 Российский рынок и карьера</h3>
+                <p>Регулирование ИИ в РФ, гранты, локализация, карьерные треки, сертификация.</p>
+                <div class="module-resources">📄 3 ресурса</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIBRARY -->
+    <section class="library-section" id="library">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">📚 Библиотека материалов</h2>
+                <p class="section-subtitle">Все ресурсы по управлению ИИ-продуктами — бесплатно и открыто</p>
+            </div>
+            <div class="library-controls">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Поиск по названию, автору или ключевым словам...">
+                </div>
+                <span id="resultCount" class="result-count"></span>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Сетка">⊞</button>
+                    <button class="view-btn" data-view="list" title="Список">☰</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="libraryGrid" class="library-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Загрузка библиотеки...</p>
+            </div>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+            <img src="icon-team.png" alt="Ничего не найдено" class="empty-icon">
+            <p>📭 Ничего не найдено</p>
+            <p class="hint">Попробуйте изменить поисковый запрос или выберите другой модуль</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Логотип Anti-AI Qwen Academy" class="footer-logo">
+                <div class="footer-text">
+                    <h3>Anti-AI Qwen Academy</h3>
+                    <p>Социальный бесплатный проект по подготовке менеджеров ИИ-продуктов. От идеи до запуска.</p>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Модули</h4>
+                <ul>
+                    <li><a href="#" data-scroll="module1">💡 Основы</a></li>
+                    <li><a href="#" data-scroll="module2">📊 Рынок</a></li>
+                    <li><a href="#" data-scroll="module3">⚙️ Технологии</a></li>
+                    <li><a href="#" data-scroll="module4">👥 Команда</a></li>
+                    <li><a href="#" data-scroll="module5">🚀 Карьера</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ресурсы</h4>
+                <ul>
+                    <li><a href="#library">📚 Библиотека</a></li>
+                    <li><a href="#support">💙 Поддержать</a></li>
+                    <li><a href="#offline">📥 Офлайн-материалы</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Правовые ресурсы</h4>
+                <ul>
+                    <li><a href="https://www.consultant.ru/" target="_blank" rel="noopener">📖 Consultant.ru</a></li>
+                    <li><a href="https://www.garant.ru/" target="_blank" rel="noopener">⚖️ Garant.ru</a></li>
+                    <li><a href="http://www.kremlin.ru/" target="_blank" rel="noopener">🏛️ Kremlin.ru</a></li>
+                    <li><a href="https://fasie.ru/" target="_blank" rel="noopener">💰 Фонд содействия инновациям</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Anti-AI Qwen Academy. Социальный бесплатный проект.</p>
+            <p class="disclaimer">⚠️ Рынок ИИ-продуктов меняется ежемесячно. Всегда проверяйте актуальность источников и грантовых программ.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop" title="Наверх">↑</button>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ============================================
+        // DATA: Library resources
+        // ============================================
+        const libraryData = [
+            {
+                id: 1,
+                title: "AI Product Management Specialization",
+                author: "Duke University (Coursera)",
+                type: "Онлайн-курс",
+                module: "module1",
+                description: "Комплексная программа по управлению ИИ-продуктами: от стратегии до запуска. 4 курса, сертификат.",
+                url: "https://www.coursera.org/specializations/ai-product-management-duke"
+            },
+            {
+                id: 2,
+                title: "The AI Product Manager's Handbook",
+                author: "Irene Bratsis",
+                type: "Книга",
+                module: "module1",
+                description: "Практическое руководство: фреймворки, кейсы, шаблоны для AI PM. Охватывает весь жизненный цикл продукта.",
+                url: "https://www.oreilly.com/library/view/the-ai-product-managers-handbook/9781098134846/"
+            },
+            {
+                id: 3,
+                title: "AI For Everyone",
+                author: "Andrew Ng (DeepLearning.AI)",
+                type: "Онлайн-курс",
+                module: "module1",
+                description: "Базовый курс по ИИ для не-технических специалистов. Понимание возможностей и ограничений технологий.",
+                url: "https://www.coursera.org/learn/ai-for-everyone"
+            },
+            {
+                id: 4,
+                title: "Jobs-to-be-Done Framework",
+                author: "Clayton Christensen Institute",
+                type: "Методика",
+                module: "module2",
+                description: "Фреймворк для поиска реальных потребностей пользователей. Основа для валидации ИИ-фич.",
+                url: "https://www.christenseninstitute.org/jobs-to-be-done/"
+            },
+            {
+                id: 5,
+                title: "The Lean Startup",
+                author: "Eric Ries",
+                type: "Книга",
+                module: "module2",
+                description: "Методология быстрого тестирования гипотез. Build-Measure-Learn цикл для ИИ-стартапов.",
+                url: "https://theleanstartup.com/"
+            },
+            {
+                id: 6,
+                title: "Gartner Hype Cycle for AI",
+                author: "Gartner",
+                type: "Отчёт",
+                module: "module2",
+                description: "Ежегодный анализ зрелости ИИ-технологий. Помогает выбирать перспективные направления для продукта.",
+                url: "https://www.gartner.com/en/articles/what-s-new-in-the-2024-gartner-hype-cycle-for-emerging-technologies"
+            },
+            {
+                id: 7,
+                title: "CB Insights AI Trends Report",
+                author: "CB Insights",
+                type: "Отчёт",
+                module: "module2",
+                description: "Анализ инвестиций, сделок и трендов в сфере ИИ. Данные для рыночного анализа и бенчмаркинга.",
+                url: "https://www.cbinsights.com/research/report/artificial-intelligence-trends/"
+            },
+            {
+                id: 8,
+                title: "MLOps: Continuous Delivery for ML",
+                author: "Google Cloud",
+                type: "Документация",
+                module: "module3",
+                description: "Практическое руководство по внедрению MLOps. От прототипа до продакшена: процессы и инструменты.",
+                url: "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+            },
+            {
+                id: 9,
+                title: "Hugging Face Course",
+                author: "Hugging Face",
+                type: "Онлайн-курс",
+                module: "module3",
+                description: "Бесплатное обучение работе с трансформерами. От основ до деплоя моделей через API.",
+                url: "https://huggingface.co/learn"
+            },
+            {
+                id: 10,
+                title: "TensorFlow Lite для мобильных приложений",
+                author: "Google Developers",
+                type: "Документация",
+                module: "module3",
+                description: "Руководство по оптимизации и деплою моделей на Android/iOS. Для офлайн-ИИ-продуктов.",
+                url: "https://www.tensorflow.org/lite"
+            },
+            {
+                id: 11,
+                title: "LangChain Documentation",
+                author: "LangChain",
+                type: "Документация",
+                module: "module3",
+                description: "Фреймворк для построения ИИ-агентов и цепочек. Примеры интеграции LLM в продукты.",
+                url: "https://langchain.com/"
+            },
+            {
+                id: 12,
+                title: "Шаблон PRD для ИИ-фичи",
+                author: "Anti-AI Qwen Academy",
+                type: "Шаблон",
+                module: "module4",
+                description: "Готовый шаблон Product Requirements Document с разделами: проблема, метрики, данные, риски, fallback.",
+                url: ""
+            },
+            {
+                id: 13,
+                title: "Чек-лист запуска ИИ-продукта",
+                author: "Anti-AI Qwen Academy",
+                type: "Чек-лист",
+                module: "module4",
+                description: "Пошаговый список: от валидации гипотезы до пост-запуска. Включает технические и бизнес-критерии.",
+                url: ""
+            },
+            {
+                id: 14,
+                title: "Метрики для ИИ-продуктов: руководство",
+                author: "Product School",
+                type: "Статья",
+                module: "module4",
+                description: "Как выбирать и интерпретировать метрики: business KPIs + ML metrics. Примеры дашбордов.",
+                url: "https://productschool.com/blog/product-management/ai-product-metrics"
+            },
+            {
+                id: 15,
+                title: "Promptfoo: тестирование ИИ-фич",
+                author: "Promptfoo",
+                type: "Инструмент",
+                module: "module4",
+                description: "Инструмент для автоматического тестирования LLM-фич: регрессии, качество ответов, безопасность.",
+                url: "https://github.com/promptfoo/promptfoo"
+            },
+            {
+                id: 16,
+                title: "Национальная стратегия развития ИИ до 2030 года",
+                author: "Президент РФ",
+                type: "Нормативный акт",
+                module: "module5",
+                description: "Стратегические направления, меры господдержки, приоритетные отрасли для ИИ-разработок в РФ.",
+                url: "http://www.kremlin.ru/acts/bank/44731"
+            },
+            {
+                id: 17,
+                title: "Фонд содействия инновациям: гранты на ИИ",
+                author: "Фонд содействия инновациям",
+                type: "Документ",
+                module: "module5",
+                description: "Программы поддержки ИИ-стартапов: «Развитие», «Коммерциализация», гранты до 30 млн ₽.",
+                url: "https://fasie.ru/"
+            },
+            {
+                id: 18,
+                title: "Yandex Cloud для ИИ-проектов",
+                author: "Yandex Cloud",
+                type: "Документация",
+                module: "module5",
+                description: "Инфраструктура для деплоя ИИ-моделей в РФ: YandexGPT API, GPU-инстансы, соответствие 152-ФЗ.",
+                url: "https://cloud.yandex.ru/docs/ai/"
+            },
+            {
+                id: 19,
+                title: "Product School: AI Product Management",
+                author: "Product School",
+                type: "Онлайн-курс",
+                module: "module5",
+                description: "Практический курс: от идеи до запуска ИИ-продукта. Кейсы, шаблоны, нетворкинг с экспертами.",
+                url: "https://productschool.com/courses/ai-product-management"
+            },
+            {
+                id: 20,
+                title: "State of AI Report 2026",
+                author: "State of AI",
+                type: "Отчёт",
+                module: "module2",
+                description: "Ежегодный независимый отчёт по ИИ: исследования, индустрия, политика, прогнозы. Данные для стратегии.",
+                url: "https://www.stateof.ai/"
+            }
+        ];
+
+        // Icon mapping
+        const iconMap = {
+            'Учебное пособие': 'icon-education.png',
+            'Книга': 'icon-education.png',
+            'Видеолекция': 'icon-education.png',
+            'Онлайн-курс': 'icon-education.png',
+            'Образовательный ресурс': 'icon-education.png',
+            'Нормативный акт': 'icon-market.png',
+            'Федеральный закон': 'icon-market.png',
+            'Законопроект': 'icon-market.png',
+            'Стандарт': 'icon-technology.png',
+            'Кодекс': 'icon-market.png',
+            'Документ': 'icon-market.png',
+            'Документация': 'icon-technology.png',
+            'Отчёт': 'icon-market.png',
+            'Статья': 'icon-market.png',
+            'Исследования': 'icon-market.png',
+            'Методика': 'icon-market.png',
+            'Инструмент': 'icon-technology.png',
+            'Чек-лист': 'icon-team.png',
+            'Шаблон': 'icon-team.png',
+            'Сертификация': 'icon-team.png'
+        };
+
+        function getIconForType(type) {
+            return iconMap[type] || 'icon-education.png';
+        }
+
+        // DOM Elements
+        const grid = document.getElementById('libraryGrid');
+        const searchInput = document.getElementById('searchInput');
+        const resultCount = document.getElementById('resultCount');
+        const emptyState = document.getElementById('emptyState');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const viewButtons = document.querySelectorAll('.view-btn');
+        const scrollTopBtn = document.getElementById('scrollTop');
+        const heroTotalResources = document.getElementById('heroTotalResources');
+        const statBooks = document.getElementById('statBooks');
+
+        let currentFilter = 'all', currentSearch = '', currentView = 'grid';
+
+        // Animated counter
+        function animateCounter(element, start, end, duration) {
+            const range = end - start;
+            if (range === 0) { element.textContent = end; return; }
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            let current = start;
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = current;
+                if (current === end) clearInterval(timer);
+            }, stepTime);
+        }
+
+        // Copy phone function
+        function copyPhone() {
+            const phone = document.getElementById('phoneNum').textContent;
+            navigator.clipboard.writeText(phone).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ Скопировано!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка копирования:', err);
+                alert('Не удалось скопировать номер. Пожалуйста, скопируйте вручную: ' + phone);
+            });
+        }
+
+        // Render cards
+        function render() {
+            const filtered = libraryData.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.module === currentFilter;
+                const searchLower = currentSearch.toLowerCase();
+                const matchesSearch =
+                    item.title.toLowerCase().includes(searchLower) ||
+                    item.author.toLowerCase().includes(searchLower) ||
+                    item.description.toLowerCase().includes(searchLower) ||
+                    item.type.toLowerCase().includes(searchLower);
+                return matchesFilter && matchesSearch;
+            });
+
+            grid.innerHTML = '';
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                resultCount.textContent = '';
+                return;
+            }
+            emptyState.classList.add('hidden');
+            resultCount.textContent = `Найдено: ${filtered.length} из ${libraryData.length}`;
+
+            filtered.forEach((item, index) => {
+                const modNum = item.module.replace('module', '');
+                const iconSrc = getIconForType(item.type);
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animationDelay = `${index * 0.05}s`;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <img src="${iconSrc}" alt="${item.type}" class="card-icon">
+                        <div class="card-meta">
+                            <span class="badge mod${modNum}">Модуль ${modNum}</span>
+                            <span class="badge type">${item.type}</span>
+                            <span class="badge free">FREE</span>
+                        </div>
+                    </div>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                    <div class="card-author"><span>👤</span><span>${item.author}</span></div>
+                    <div class="card-footer">
+                        ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="card-link">Открыть ресурс <span class="arrow">→</span></a>` : '<span class="card-offline">📥 Офлайн-доступ</span>'}
+                    </div>`;
+                grid.appendChild(card);
+            });
+        }
+
+        // Event listeners
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                navButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                render();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim();
+            render();
+        });
+
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                viewButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentView = btn.dataset.view;
+                grid.classList.toggle('list-view', currentView === 'list');
+            });
+        });
+
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const moduleId = card.dataset.module;
+                const btn = document.querySelector(`.nav-btn[data-filter="${moduleId}"]`);
+                if (btn) {
+                    btn.click();
+                    document.getElementById('library').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-scroll]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const moduleId = link.getAttribute('data-scroll');
+                const btn = document.querySelector(`.nav-btn[data-filter="${moduleId}"]`);
+                if (btn) {
+                    btn.click();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounter(heroTotalResources, 0, libraryData.length, 1200);
+            animateCounter(statBooks, 0, libraryData.length, 1200);
+            render();
+        });
+    </script>
+</body>
+</html>
