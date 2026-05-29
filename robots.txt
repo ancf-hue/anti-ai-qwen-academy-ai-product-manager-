@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Disallow: /*?          # Блокирует параметры фильтрации (например, поиск или выбор модулей в URL)
+Disallow: /*_next/     # Блокирует системные файлы сборки (если проект на Next.js)
+
+# Ссылка на карту сайта
+Sitemap: https://vercel.app
