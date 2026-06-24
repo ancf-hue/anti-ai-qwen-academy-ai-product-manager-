@@ -6,20 +6,20 @@
     <meta name="description" content="Anti-AI Qwen Academy — бесплатный социальный проект по подготовке менеджеров ИИ-продуктов">
     <title>Anti-AI Qwen Academy | Менеджер ИИ-продуктов (AI Product Manager)</title>
     
-    <!-- 🔹 Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="512x512" href="logo.png">
     
-    <!-- 🔹 Open Graph / Social -->
+    <!-- Open Graph / Social -->
     <meta property="og:title" content="Anti-AI Qwen Academy | AI Product Manager">
     <meta property="og:description" content="Бесплатная библиотека материалов по управлению ИИ-продуктами">
     <meta property="og:type" content="website">
     <meta property="og:image" content="logo.png">
     
-    <!-- 🔹 Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
@@ -285,7 +285,7 @@
         }
 
         /* ============================================
-           STATS SECTION
+           STATS SECTION - ИСПРАВЛЕНО: div вместо section (без заголовка)
            ============================================ */
         .stats-section {
             max-width: 1440px;
@@ -585,7 +585,8 @@
             font-size: 1.8rem;
         }
 
-        .offline-card h4 {
+        /* ИСПРАВЛЕНО: h4 заменен на h3 для правильной иерархии */
+        .offline-card h3 {
             font-size: 1rem;
             color: var(--navy);
             font-weight: 700;
@@ -1024,7 +1025,8 @@
             font-size: 0.9rem;
         }
 
-        .footer-column h4 {
+        /* ИСПРАВЛЕНО: h4 заменен на h3 для правильной иерархии */
+        .footer-column h3 {
             font-size: 0.9rem;
             margin-bottom: 1.2rem;
             font-weight: 700;
@@ -1268,8 +1270,8 @@
         </div>
     </section>
 
-    <!-- STATS -->
-    <section class="stats-section">
+    <!-- STATS - ИСПРАВЛЕНО: div вместо section (нет заголовка) -->
+    <div class="stats-section">
         <div class="stat-card">
             <img src="icon-education.png" alt="Образование" class="stat-icon">
             <div class="stat-number" id="statBooks">0</div>
@@ -1290,7 +1292,7 @@
             <div class="stat-number">PRD</div>
             <div class="stat-label">Шаблоны и чек-листы</div>
         </div>
-    </section>
+    </div>
 
     <!-- SUPPORT SECTION -->
     <section class="support-section" id="support">
@@ -1340,31 +1342,31 @@
         <div class="offline-grid">
             <div class="offline-card">
                 <div class="offline-icon">📋</div>
-                <h4>PRD-template.pdf</h4>
+                <h3>PRD-template.pdf</h3>
                 <p>Шаблон Product Requirements Document для ИИ-фич</p>
                 <a href="PRD-template.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
             </div>
             <div class="offline-card">
                 <div class="offline-icon">✅</div>
-                <h4>launch-checklist.pdf</h4>
+                <h3>launch-checklist.pdf</h3>
                 <p>Чек-лист запуска ИИ-продукта: до и после релиза</p>
                 <a href="launch-checklist.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
             </div>
             <div class="offline-card">
                 <div class="offline-icon">🎯</div>
-                <h4>business-canvas.pdf</h4>
+                <h3>business-canvas.pdf</h3>
                 <p>Business Model Canvas адаптирован для ИИ-продуктов</p>
                 <a href="business-canvas.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
             </div>
             <div class="offline-card">
                 <div class="offline-icon">🧪</div>
-                <h4>mvp-test-guide.pdf</h4>
+                <h3>mvp-test-guide.pdf</h3>
                 <p>Руководство по MVP-тестам: Wizard of Oz, Concierge, Fake Door</p>
                 <a href="mvp-test-guide.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
             </div>
             <div class="offline-card">
                 <div class="offline-icon">📊</div>
-                <h4>metrics-guide.pdf</h4>
+                <h3>metrics-guide.pdf</h3>
                 <p>Метрики для ИИ-продуктов: business KPIs + ML metrics</p>
                 <a href="metrics-guide.pdf" class="offline-download" download>📥 Скачать (офлайн)</a>
             </div>
@@ -1457,7 +1459,7 @@
                 </div>
             </div>
             <div class="footer-column">
-                <h4>Модули</h4>
+                <h3>Модули</h3>
                 <ul>
                     <li><a href="#" data-scroll="module1">💡 Основы</a></li>
                     <li><a href="#" data-scroll="module2">📊 Рынок</a></li>
@@ -1467,7 +1469,7 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Ресурсы</h4>
+                <h3>Ресурсы</h3>
                 <ul>
                     <li><a href="#library">📚 Библиотека</a></li>
                     <li><a href="#support">💙 Поддержать</a></li>
@@ -1475,7 +1477,7 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Правовые ресурсы</h4>
+                <h3>Правовые ресурсы</h3>
                 <ul>
                     <li><a href="https://www.consultant.ru/" target="_blank" rel="noopener">📖 Consultant.ru</a></li>
                     <li><a href="https://www.garant.ru/" target="_blank" rel="noopener">⚖️ Garant.ru</a></li>
